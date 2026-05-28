@@ -18,7 +18,7 @@ export function TaskDetails(){
 
     return (
         <div className="bg-slate-500 w-screen h-screen p-6">
-            <div className="space-y-4">
+            <div className="w-[500px] mx-auto space-y-4">
                 <div className="justify-center flex relative mb-6">
                     <button className="absolute left-0 top-0 "
                     onClick={rollBack}
