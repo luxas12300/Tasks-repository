@@ -64,7 +64,7 @@
 "use client";
 
 import Buttom from "@/app/components/Buttom";
-import { ChevronRightIcon, TrashIcon } from "lucide-react";
+import { CheckIcon, ChevronRightIcon, TrashIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export interface Task {
@@ -88,10 +88,18 @@ function Tasks({ tasks = [], onTaskClick, onDeleteTaskClick }: TasksProps) {
 
 
     function seeTaskDetails(task: Task): void {
-        const query = new URLSearchParams();
-        query.set("title", task.title);
-        query.set("description", task.description);
-        router.push(`/Pages/TaskPage?${query.toString()}`);
+        
+        const params = new URLSearchParams({
+            title: task.title,
+            description: task.description
+        })
+
+        router.push(`/Pages/TaskPage?${params.toString()}`)
+        
+        // const query = new URLSearchParams();
+        // query.set("title", task.title);
+        // query.set("description", task.description);
+        // router.push(`/Pages/TaskPage?${query.toString()}`);
     }
 
     // Verificação segura
@@ -106,7 +114,9 @@ function Tasks({ tasks = [], onTaskClick, onDeleteTaskClick }: TasksProps) {
                 </li>
                 <li>
                     <button className="bg-slate-400 rounded-md p-4"
-                    onClick={() => router.push("/")}
+                    onClick={
+                        () => router.push("/")
+                    }
                     >Menu principal</button>
                 </li>
             </ul>
@@ -119,8 +129,9 @@ function Tasks({ tasks = [], onTaskClick, onDeleteTaskClick }: TasksProps) {
                 <li key={task.id} className="flex gap-2">
                     <button 
                         onClick={() => onTaskClick?.(task.id)} 
-                        className={`bg-slate-400 w-full text-white p-2 rounded-md ${task.isCompleted ? "line-through" : ""}`}
+                        className={`bg-slate-400 w-full text-left flex text-white items-center gap-2 p-2 rounded-md ${task.isCompleted ? "line-through" : ""}`}
                     >
+                        {task.isCompleted && <CheckIcon />}
                         {task.title}
                     </button>
                     

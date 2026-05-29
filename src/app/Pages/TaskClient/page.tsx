@@ -45,12 +45,12 @@ export default function TaskClient({ title, description }: TaskClientProps) {
                     >
                         Menu principal
                     </button>
-                    <button 
+                    {/* <button 
                         className="bg-slate-400 rounded-md p-4" 
                         onClick={() => router.push("/Pages/Tasks")}
                     >
                         Lista de tarefas
-                    </button>
+                    </button> */}
                 </div>
             </div>
         </div>
